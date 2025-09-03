@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Code Explainer + Optimizer</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Code Explainer + Optimizer</h1>
+    <textarea id="code" rows="18" placeholder="Paste Python code here..."></textarea>
+    <div class="controls">
+      <button id="explain">Explain</button>
+      <button id="optimize">Optimize</button>
+    </div>
+
+    <h3>Result</h3>
+    <pre id="result"></pre>
+    <h3>Optimized / Formatted</h3>
+    <pre id="optimized"></pre>
+    <hr/>
+    <button onclick="window.location.href='/analytics'">View Analytics</button>
+    <!-- <a href="/analytics">View analytics</a> -->
+  </div>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>

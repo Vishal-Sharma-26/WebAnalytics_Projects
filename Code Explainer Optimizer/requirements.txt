@@ -1,0 +1,21 @@
+Flask==2.3.3
+pymongo==4.7.2
+black==24.1.0
+radon==5.0.0
+flake8==6.1.0
+rope==1.8.0
+pygments==2.16.1
+python-dateutil==2.8.2
+astor==0.8.1
+
+Why each is here:
+
+Flask → your web framework
+pymongo → MongoDB client
+black → code formatting
+radon → complexity analysis
+flake8 → linting (optional, but handy if you integrate later)
+rope → refactoring helper
+pygments → syntax highlighting
+python-dateutil → for datetime parsing/formatting
+astor → lets you turn AST trees back into source code

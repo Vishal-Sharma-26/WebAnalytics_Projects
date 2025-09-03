@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Analytics</title>
+  <link rel="stylesheet" href="/static/css/analytics.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Usage analytics</h1>
+  <div>
+    <canvas id="chart1" width="600" height="200"></canvas>
+  </div>
+  <pre id="raw">Loading...</pre>
+  <script>
+    async function loadStats(){
+      const r = await fetch('/api/stats');
+      const j = await r.json();
+      document.getElementById('raw').textContent = JSON.stringify(j, null, 2);
+      const actions = j.actions || {};
+      const labels = Object.keys(actions);
+      const data = Object.values(actions);
+      new Chart(document.getElementById('chart1').getContext('2d'), {
+        type: 'bar',
+        data: { labels, datasets: [{ label: 'Actions', data }] }
+      });
+    }
+    loadStats();
+  </script>
+  <button onclick="window.location.href='/'">Back</button>
+  <!-- <a href="/">Back</a> -->
+</body>
+</html>
