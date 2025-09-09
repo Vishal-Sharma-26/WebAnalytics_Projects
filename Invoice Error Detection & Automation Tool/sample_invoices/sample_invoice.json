@@ -1,0 +1,14 @@
+{
+  "invoice_number": "INV-2025-001",
+  "supplier": "Acme Supplies Pvt Ltd",
+  "date": "01-09-2025",
+  "currency": "INR",
+  "line_items": [
+    {"description": "Widget A", "quantity": 2, "unit_price": 150.00, "total": 300.00},
+    {"description": "Widget B", "quantity": 1, "unit_price": 200.00, "total": 200.00}
+  ],
+  "total_amount": 500.00,
+  "tax_percent": 18,
+  "tax_amount": 90.00,
+  "notes": "Payment due in 15 days"
+}

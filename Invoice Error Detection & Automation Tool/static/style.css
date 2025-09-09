@@ -1,0 +1,102 @@
+body {
+  background: linear-gradient(135deg, rgb(55, 76, 83), rgb(158, 155, 189));
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Custom Navbar Background */
+.custom-navbar {
+  background: linear-gradient(135deg, #567fa7, #658482);
+  backdrop-filter: blur(6px); /* soft blur effect */
+}
+
+
+/* Make links brighter for readability */
+.custom-navbar .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #222 !important;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+
+h5.card-title {
+  font-weight: 600;
+  color: #222;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+textarea.form-control {
+  font-family: monospace;
+  font-size: 14px;
+  background-color: #fafafa;
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 180px;
+}
+
+
+.custom-btn {
+    background: linear-gradient(135deg, rgb(55, 76, 83), rgb(158, 155, 189));
+    color: #fff;
+}
+
+button.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.4s ease-in-out;
+  
+}
+
+button.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  color: #fff;
+}
+
+pre {
+  background: #f0f3f8;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 13px;
+  overflow-x: auto;
+  border: 1px solid #e0e6ef;
+}
+
+#savedList .card {
+  background: #fff;
+  border-left: 4px solid #3f526d;
+  margin-bottom: 10px;
+}
+
+#savedList pre {
+  background: #f9fafc;
+  margin-top: 0.5rem;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  textarea.form-control {
+    font-size: 12px;
+    min-height: 140px;
+  }
+  pre {
+    font-size: 12px;
+  }
+  .btn {
+    font-size: 14px;
+    padding: 0.6rem;
+  }
+}
