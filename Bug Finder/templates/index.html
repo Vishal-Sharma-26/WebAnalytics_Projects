@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bug Finder - Code Analysis Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🔍 Bug Finder</h1>
+        <p>Advanced Code Analysis & Bug Detection Tool</p>
+      </div>
+
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="stat-number" id="totalAnalyses">-</div>
+          <div class="stat-label">Total Analyses</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="criticalIssues">-</div>
+          <div class="stat-label">Critical Issues</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="mediumIssues">-</div>
+          <div class="stat-label">Medium Issues</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="lowIssues">-</div>
+          <div class="stat-label">Low Issues</div>
+        </div>
+      </div>
+
+      <div class="upload-section">
+        <h2>Analyze Your Code</h2>
+
+        <div class="upload-tabs">
+          <div class="tab active" onclick="switchTab('file')">
+            📁 Upload File
+          </div>
+          <div class="tab" onclick="switchTab('code')">💻 Paste Code</div>
+        </div>
+
+        <div id="fileTab" class="tab-content active">
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <h3>Drop your code file here or click to browse</h3>
+            <p>
+              Supports: Python, JavaScript, Java, C++, C#, PHP, Ruby, Go,
+              TypeScript, HTML, CSS, SQL
+            </p>
+            <input
+              type="file"
+              id="fileInput"
+              accept=".py,.js,.java,.cpp,.c,.cs,.php,.rb,.go,.ts,.jsx,.tsx,.html,.css,.sql"
+              style="display: none"
+            />
+          </div>
+        </div>
+
+        <div id="codeTab" class="tab-content">
+          <div class="form-group">
+            <label for="filenameInput">Filename (with extension)</label>
+            <input
+              type="text"
+              id="filenameInput"
+              placeholder="example.py"
+              value="code.py"
+            />
+          </div>
+          <div class="form-group">
+            <label for="codeInput">Paste your code here</label>
+            <textarea
+              id="codeInput"
+              class="code-input"
+              placeholder="# Paste your code here..."
+            ></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px">
+          <button
+            id="analyzeBtn"
+            class="btn btn-primary"
+            onclick="analyzeCode()"
+          >
+            🔍 Analyze Code
+          </button>
+        </div>
+      </div>
+
+      <div id="resultsSection" class="results-section">
+        <div class="analysis-header">
+          <div class="analysis-info">
+            <h2>Analysis Results</h2>
+            <p id="analysisFilename"></p>
+          </div>
+          <div class="analysis-actions">
+            <button class="btn btn-secondary" onclick="downloadReport()">
+              📄 Download Report
+            </button>
+          </div>
+        </div>
+
+        <div class="severity-summary" id="severitySummary">
+          <div class="severity-card severity-critical">
+            <div class="severity-count" id="criticalCount">0</div>
+            <div>Critical</div>
+          </div>
+          <div class="severity-card severity-high">
+            <div class="severity-count" id="highCount">0</div>
+            <div>High</div>
+          </div>
+          <div class="severity-card severity-medium">
+            <div class="severity-count" id="mediumCount">0</div>
+            <div>Medium</div>
+          </div>
+          <div class="severity-card severity-low">
+            <div class="severity-count" id="lowCount">0</div>
+            <div>Low</div>
+          </div>
+        </div>
+
+        <div id="issuesList" class="issues-list"></div>
+      </div>
+
+      <div class="history-section">
+        <h2>Recent Analyses</h2>
+        <div id="historyContainer" class="loading">
+          Loading recent analyses...
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+  </body>
+</html>
