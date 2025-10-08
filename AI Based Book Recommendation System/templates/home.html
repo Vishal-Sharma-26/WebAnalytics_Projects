@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid books-grid">
+  {% for book in books %}
+  <article class="card book-card" data-book-id="{{ book.id }}">
+    <h3>{{ book.title }}</h3>
+    <p class="muted">by {{ book.author }}</p>
+    <p class="price">₹{{ book.price }}</p>
+    <div class="actions">
+      <a class="btn btn-outline view-details" href="{{ url_for('purchase') }}?book_id={{ book.id }}">Buy now</a>
+      <button class="btn recommend-btn" data-id="{{ book.id }}">Recommend similar</button>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+<section id="recommendation" class="card">
+  <h2>Recommended for you</h2>
+  <div id="recoList">
+    <p class="muted">Click "Recommend similar" on a book to see recommendations (placeholder).</p>
+  </div>
+</section>
+{% endblock %}

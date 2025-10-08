@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Invoice Dashboard</h1>
+        <table>
+            <tr>
+                <th>Filename</th>
+                <th>Invoice Number</th>
+                <th>Date</th>
+                <th>Total Amount</th>
+            </tr>
+            {% for inv in invoices %}
+            <tr>
+                <td>{{ inv.filename }}</td>
+                <td>{{ inv.invoice_number }}</td>
+                <td>{{ inv.invoice_date }}</td>
+                <td>{{ inv.total_amount }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/">Upload More</a>
+    </div>
+</body>
+</html>

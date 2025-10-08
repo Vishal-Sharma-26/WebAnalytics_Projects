@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h4 class="card-title">Scrape result</h4>
+    <p><strong>URL:</strong> <a href="{{ job.data.url }}" target="_blank" rel="noopener">{{ job.data.url }}</a></p>
+    <p><strong>Fetched at (UTC):</strong> {{ job.data.fetched_at }}</p>
+    <p>
+      <a class="btn btn-outline-primary btn-sm" href="{{ url_for('download_csv', job_id=job.id) }}">Download CSV</a>
+      <a class="btn btn-secondary btn-sm" href="{{ url_for('profile') }}">Back to profile</a>
+    </p>
+    <hr>
+    <h5>Summary</h5>
+    <ul>
+      <li>Title: {{ job.data.title or '—' }}</li>
+      <li>Meta description: {{ job.data.meta_description or '—' }}</li>
+      <li>Headings: {{ job.summary.num_headings }}</li>
+      <li>Paragraphs: {{ job.summary.num_paragraphs }}</li>
+      <li>Links: {{ job.summary.num_links }}</li>
+      <li>Tables: {{ job.summary.num_tables }}</li>
+    </ul>
+
+    {% if job.data.headings %}
+      <h5 class="mt-3">Headings</h5>
+      <ul>
+        {% for h in job.data.headings %}
+          <li><strong>{{ h.tag }}</strong>: {{ h.text }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if job.data.paragraphs %}
+      <h5 class="mt-3">Paragraphs</h5>
+      {% for p in job.data.paragraphs %}
+        <p>{{ p }}</p>
+      {% endfor %}
+    {% endif %}
+
+    {% if job.data.links %}
+      <h5 class="mt-3">Links (first 50)</h5>
+      <table class="table table-sm">
+        <thead><tr><th>Href</th><th>Text</th></tr></thead>
+        <tbody>
+          {% for l in job.data.links[:50] %}
+            <tr>
+              <td><a href="{{ l.href }}" target="_blank" rel="noopener">{{ l.href }}</a></td>
+              <td>{{ l.text }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+    {% if job.data.tables %}
+      <h5 class="mt-3">Tables</h5>
+      {% for t in job.data.tables %}
+        <div class="table-responsive mb-3">
+          <table class="table table-bordered table-sm">
+            {% if t.headers %}
+            <thead>
+              <tr>
+                {% for h in t.headers %}
+                  <th>{{ h }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            {% endif %}
+            <tbody>
+              {% for row in t.rows %}
+                <tr>
+                  {% for cell in row %}
+                    <td>{{ cell }}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

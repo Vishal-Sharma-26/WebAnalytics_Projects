@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Repo Explainer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Repo Explainer</h1>
+    <p>Paste a GitHub repo URL (public or private with token) to visualize files and relationships.</p>
+
+    <div class="form">
+      <input id="repoUrl" placeholder="https://github.com/owner/repo" />
+      <input id="branch" placeholder="optional branch (leave empty for default)" />
+      <input id="token" placeholder="optional GitHub token (for private repos / higher rate limits)" />
+      <button id="analyzeBtn">Analyze</button>
+      <div id="status" class="status"></div>
+    </div>
+
+    <div id="results" style="display:none">
+      <div class="summary">
+        <h3>Summary</h3>
+        <div id="summaryArea"></div>
+      </div>
+
+      <div class="panels">
+        <div class="panel left">
+          <h4>File Tree</h4>
+          <pre id="fileTree"></pre>
+          <h4>Top files by size</h4>
+          <ul id="topFiles"></ul>
+        </div>
+
+        <div class="panel right">
+          <h4>Dependency Graph</h4>
+          <svg id="graph" width="800" height="600"></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

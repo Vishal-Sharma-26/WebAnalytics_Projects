@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Hi, {{ user.name }}</h2>
+<h3>Your orders</h3>
+<ul>
+  {% for o in orders %}
+    <li>{{ o.book_id }} - {{ o.amount }} - {{ o.status }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

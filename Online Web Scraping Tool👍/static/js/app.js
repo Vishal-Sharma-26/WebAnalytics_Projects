@@ -1,0 +1,1 @@
+// Small placeholder JS file. For now, no custom behavior required.

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home — Flask Scraper{% endblock %}
+{% block content %}
+<div class="p-4 bg-white rounded shadow-sm">
+  <h1>Welcome to Flask Scraper</h1>
+  <p class="lead">A simple, secure web scraping utility for learning and small tasks.</p>
+  <p>
+    {% if current_user.is_authenticated %}
+      <a class="btn btn-primary" href="{{ url_for('scrape') }}">Scrape a URL</a>
+      <a class="btn btn-outline-secondary" href="{{ url_for('profile') }}">View profile</a>
+    {% else %}
+      <a class="btn btn-primary" href="{{ url_for('signup') }}">Create account</a>
+      <a class="btn btn-outline-secondary" href="{{ url_for('login') }}">Log in</a>
+    {% endif %}
+  </p>
+
+  <hr>
+  <h5>Quick test</h5>
+  <p>After creating an account and logging in, try scraping <code>https://example.com</code>.</p>
+</div>
+{% endblock %}

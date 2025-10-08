@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container" enctype="multipart/form-data">
+        <h1>Upload Invoice</h1>
+        <form id="uploadForm">
+            <input type="file" name="invoice" accept=".txt,.pdf" required>
+            <button type="submit">Upload</button>
+        </form>
+        <div id="result"></div>
+        <a href="/dashboard">View Dashboard</a>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

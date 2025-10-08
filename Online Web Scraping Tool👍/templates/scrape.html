@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Scrape a URL</h5>
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            {{ form.url.label(class="form-label") }}
+            {{ form.url(class="form-control", placeholder="https://example.com") }}
+            {% for err in form.url.errors %}<div class="form-text text-danger">{{ err }}</div>{% endfor %}
+          </div>
+          <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
+        </form>
+      </div>
+    </div>
+
+    {% if result %}
+      <!-- Optionally show inline result (unused in this version) -->
+    {% endif %}
+  </div>
+
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h6>Tips</h6>
+        <ul>
+          <li>Respect <code>robots.txt</code>.</li>
+          <li>Don't scrape private or login-protected pages.</li>
+          <li>Try <code>https://example.com</code> for a quick test.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

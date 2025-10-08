@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="book-detail">
+  <img src="{{ book.cover or '/static/covers/default.jpg' }}" alt="cover">
+  <div class="meta">
+    <h2>{{ book.title }}</h2>
+    <p>by {{ book.author }}</p>
+    <p>{{ book.description }}</p>
+    <p>Price: ₹{{ book.price }}</p>
+    <a href="{{ url_for('purchase', book_id=book._id) }}" class="btn">Buy</a>
+    <div class="rating">
+      {% if user %}
+        <label>Rate this book:</label>
+        <select id="rating-select">
+          <option value="">--</option>
+          {% for i in range(1,6) %}
+            <option value="{{ i }}">{{ i }}</option>
+          {% endfor %}
+        </select>
+        <button id="submit-rating" data-book-id="{{ book._id }}">Submit</button>
+      {% else %}
+        <p><a href="{{ url_for('login') }}">Login</a> to rate.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<h3>Recommended based on this book</h3>
+<div class="rec-grid">
+  {% for r in recs %}
+  <div class="rec-card">
+    <img src="{{ r.cover or '/static/covers/default.jpg' }}">
+    <h4>{{ r.title }}</h4>
+    <p>₹{{ r.price }}</p>
+    <a href="{{ url_for('book_detail', book_id=r._id) }}">View</a>
+  </div>
+  {% endfor %}
+</div>
+<script>
+document.getElementById("submit-rating")?.addEventListener("click", async function(){
+  const bookId = this.dataset.bookId;
+  const rating = document.getElementById("rating-select").value;
+  if(!rating) return alert("Pick a rating 1-5");
+  const res = await fetch("/api/rate", {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({book_id: bookId, rating})});
+  const json = await res.json();
+  if(json.error) alert(json.error); else alert("Thanks for rating!");
+});
+</script>
+{% endblock %}

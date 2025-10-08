@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Purchase: {{ book.title }}</h2>
+<form method="post">
+  <label>Your address</label>
+  <textarea name="address" required></textarea>
+  <p>Amount: ₹{{ book.price }}</p>
+  <button type="submit">Confirm purchase (demo)</button>
+</form>
+{% endblock %}
